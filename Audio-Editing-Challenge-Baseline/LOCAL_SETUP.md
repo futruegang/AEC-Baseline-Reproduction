@@ -18,7 +18,7 @@ SAM-Audio 使用 `lean` 加载，保留相同的 Large 主模型、文本编码�
 
 ## 手动上传与验证
 
-源码在 `AEC/可提交GitHub/`，大权重和数据集音频在 `AEC/需手动上传服务器/`。将两组中的同名项目目录合并上传到服务器，然后执行：
+源码在 `AEC/github/`，大权重和数据集音频在 `AEC/server-assets/`。将两组中的同名项目目录合并上传到服务器，然后执行：
 
 ```bash
 python verify_baseline_resources.py

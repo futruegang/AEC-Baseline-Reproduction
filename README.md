@@ -11,10 +11,10 @@
 
 本地 `AEC/` 分成两组，组内保留相同的项目相对路径：
 
-- `可提交GitHub/`：本仓库的源码和小文件。
-- `需手动上传服务器/`：已下载的大权重和 MMAE 音频。
+- `github/`：本仓库的源码和小文件。
+- `server-assets/`：已下载的大权重和 MMAE 音频。
 
-在服务器上 clone 本仓库，然后把 `需手动上传服务器/` 中的 `Audio-Editing-Challenge-Baseline/` 合并到仓库内同名目录，保留源码、配置和权重。
+在服务器上 clone 本仓库，然后把 `server-assets/` 中的 `Audio-Editing-Challenge-Baseline/` 合并到仓库内同名目录，保留源码、配置和权重。
 
 合并完成后可使用纯 Python 校验脚本：
 
