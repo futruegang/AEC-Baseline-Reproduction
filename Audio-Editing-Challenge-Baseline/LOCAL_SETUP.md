@@ -43,3 +43,9 @@ SAM 环境须独立安装官方包（Python >=3.11）和 HTTP 服务依赖 fasta
 Windows PowerShell 的路径配置可用 `. ./baseline-local-env.ps1`；此脚本只设置变量，不将 Linux 启动脚本转换为 Windows 版本。
 
 服务新增 `--t5-path` / `SAM_AUDIO_T5_PATH` 支持本地 T5，不改下载的原始模型配置。原有 `--model` 参数直接加载本地 `ckpts/sam-audio-large`，无需 HF SAM 访问权限。
+
+## 使用远程 API 评估
+
+MMAE 评分可通过远程 API 调用官方评估模型 `Qwen/Qwen3-Omni-30B-A3B-Instruct`，不在租用的 GPU 上部署评估模型。API 地址、密钥和模型 ID 分别通过 `MMAE_JUDGE_BASE_URL`、`MMAE_JUDGE_API_KEY`、`MMAE_JUDGE_MODEL` 配置。
+
+从 `MMAE/` 目录运行 `python -m eval.score`，先使用 `--limit 1 --concurrency 1` 验证接口。具体命令见 [MMAE API 评估说明](MMAE/README.md#step-1-connect-to-the-judge-api-recommended-for-a-single-gpu-baseline)。API 评估只需 `MMAE/requirements-api.txt` 中的 HTTP 客户端依赖，不需要本地 Qwen3-Omni 权重或 vLLM。

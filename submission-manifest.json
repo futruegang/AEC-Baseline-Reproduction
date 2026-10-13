@@ -5,56 +5,28 @@
       "bytes": 456
     },
     {
-      "path": "README.md",
-      "bytes": 1823
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/.gitignore",
       "bytes": 424
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/LOCAL_SETUP.md",
-      "bytes": 2655
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/README.md",
-      "bytes": 3902
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/baseline-local-env.ps1",
-      "bytes": 412
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/baseline-local-env.sh",
-      "bytes": 531
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/pyproject.toml",
-      "bytes": 1158
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/run.sh",
-      "bytes": 5794
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/run_agent_mmae.py",
-      "bytes": 9018
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/run_single_mmae.py",
-      "bytes": 11496
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/setup.sh",
-      "bytes": 3711
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/verify_baseline_resources.py",
-      "bytes": 1608
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/.env.example",
       "bytes": 697
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/ISSUE_TEMPLATE/bug_report.yml",
+      "bytes": 4700
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/ISSUE_TEMPLATE/config.yml",
+      "bytes": 239
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/ISSUE_TEMPLATE/feature_request.yml",
+      "bytes": 3780
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/PULL_REQUEST_TEMPLATE.md",
+      "bytes": 2358
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/.gitignore",
@@ -77,32 +49,8 @@
       "bytes": 25077
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/pyproject.toml",
-      "bytes": 2924
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/PULL_REQUEST_TEMPLATE.md",
-      "bytes": 2358
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/ISSUE_TEMPLATE/bug_report.yml",
-      "bytes": 4700
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/ISSUE_TEMPLATE/config.yml",
-      "bytes": 239
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/.github/ISSUE_TEMPLATE/feature_request.yml",
-      "bytes": 3780
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/assets/arch.png",
       "bytes": 861271
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/assets/performance.png",
-      "bytes": 2249748
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/assets/demo-input-audio/accent/accent-anhui-input.wav",
@@ -201,6 +149,10 @@
       "bytes": 477644
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/assets/performance.png",
+      "bytes": 2249748
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/.gitkeep",
       "bytes": 0
     },
@@ -213,20 +165,20 @@
       "bytes": 9707
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/config.yaml",
-      "bytes": 1310
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/configuration.json",
-      "bytes": 25
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/assets/arch.png",
       "bytes": 861271
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/assets/performance.png",
       "bytes": 2249748
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/config.yaml",
+      "bytes": 1310
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/configuration.json",
+      "bytes": 25
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/Qwen2.5-Omni-3B/LICENSE",
@@ -321,6 +273,10 @@
       "bytes": 11652
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/pyproject.toml",
+      "bytes": 2924
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/scripts/train.sh",
       "bytes": 2051
     },
@@ -413,16 +369,16 @@
       "bytes": 0
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/src/auk/model/vae/modules/commons/assets/mel_filters.npz",
+      "bytes": 4271
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/src/auk/model/vae/modules/commons/layers.py",
       "bytes": 4058
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/src/auk/model/vae/modules/commons/ops.py",
       "bytes": 264
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/src/auk/model/vae/modules/commons/assets/mel_filters.npz",
-      "bytes": 4271
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/src/auk/model/vae/modules/vits/__init__.py",
@@ -441,6 +397,10 @@
       "bytes": 26091
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/LOCAL_SETUP.md",
+      "bytes": 3294
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/.gitignore",
       "bytes": 20
     },
@@ -454,11 +414,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/README.md",
-      "bytes": 5650
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/MMAE/requirements.txt",
-      "bytes": 1499
+      "bytes": 8687
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/assets/examples.png",
@@ -489,20 +445,12 @@
       "bytes": 0
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/launch_qwen3_omni.sh",
-      "bytes": 1890
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/score.py",
-      "bytes": 6608
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/core/__init__.py",
       "bytes": 0
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/core/client.py",
-      "bytes": 3170
+      "bytes": 5862
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/core/data.py",
@@ -521,20 +469,40 @@
       "bytes": 4988
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/launch_qwen3_omni.sh",
+      "bytes": 1890
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/score.py",
+      "bytes": 8122
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/test_api_client.py",
+      "bytes": 4840
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/MMAE/requirements-api.txt",
+      "bytes": 102
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/MMAE/requirements.txt",
+      "bytes": 1499
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/README.md",
+      "bytes": 3902
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/assets/audio-editing-challenge-agent.png",
       "bytes": 1007301
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/ckpts/baseline-verification.json",
-      "bytes": 6516
+      "path": "Audio-Editing-Challenge-Baseline/baseline-local-env.ps1",
+      "bytes": 412
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/ckpts/code-revisions.json",
-      "bytes": 226
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/ckpts/sam-resources.json",
-      "bytes": 230
+      "path": "Audio-Editing-Challenge-Baseline/baseline-local-env.sh",
+      "bytes": 531
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/SenseVoiceSmall/README.md",
@@ -555,10 +523,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/SenseVoiceSmall/configuration.json",
       "bytes": 396
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/ckpts/SenseVoiceSmall/tokens.json",
-      "bytes": 352064
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/SenseVoiceSmall/example/en.mp3",
@@ -605,6 +569,18 @@
       "bytes": 325753
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/ckpts/SenseVoiceSmall/tokens.json",
+      "bytes": 352064
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/ckpts/baseline-verification.json",
+      "bytes": 6516
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/ckpts/code-revisions.json",
+      "bytes": 226
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/sam-audio-large/LICENSE",
       "bytes": 7353
     },
@@ -619,6 +595,10 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/sam-audio-large/configuration.json",
       "bytes": 64
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/ckpts/sam-resources.json",
+      "bytes": 230
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/t5-base/config.json",
@@ -639,6 +619,26 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/ckpts/t5-base/tokenizer.json",
       "bytes": 1389353
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/pyproject.toml",
+      "bytes": 1158
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/run.sh",
+      "bytes": 5794
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/run_agent_mmae.py",
+      "bytes": 9018
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/run_single_mmae.py",
+      "bytes": 11496
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/.github/workflows/ci.yaml",
+      "bytes": 948
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/.gitignore",
@@ -665,24 +665,12 @@
       "bytes": 7307
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/pyproject.toml",
-      "bytes": 1516
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/.github/workflows/ci.yaml",
-      "bytes": 948
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/assets/sam_audio_main_model.png",
       "bytes": 1545274
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/eval/README.md",
       "bytes": 2585
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/eval/main.py",
-      "bytes": 5288
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/eval/dataset/__init__.py",
@@ -695,6 +683,10 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/eval/dataset/sam_audio_bench.py",
       "bytes": 5508
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/eval/main.py",
+      "bytes": 5288
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/eval/metrics/__init__.py",
@@ -717,6 +709,10 @@
       "bytes": 1643
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/examples/assets/office.mp4",
+      "bytes": 4551702
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/examples/span_prompting.ipynb",
       "bytes": 2563854
     },
@@ -727,10 +723,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/examples/visual_prompting.ipynb",
       "bytes": 8876579
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/examples/assets/office.mp4",
-      "bytes": 4551702
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/.gitignore",
@@ -751,14 +743,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/README.md",
       "bytes": 2490
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/requirements.txt",
-      "bytes": 140
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/setup.py",
-      "bytes": 1687
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/dacvae/__init__.py",
@@ -805,6 +789,14 @@
       "bytes": 9369
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/requirements.txt",
+      "bytes": 140
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/dacvae/setup.py",
+      "bytes": 1687
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/.gitignore",
       "bytes": 123
     },
@@ -829,36 +821,8 @@
       "bytes": 26631
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/requirements.txt",
-      "bytes": 359
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/setup.py",
-      "bytes": 740
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/INSTALL.md",
-      "bytes": 417
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/README.md",
-      "bytes": 3627
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/README.md",
       "bytes": 1668
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/engine.py",
-      "bytes": 11163
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/engine_tta.py",
-      "bytes": 8967
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/main.py",
-      "bytes": 26783
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/datasets/__init__.py",
@@ -893,16 +857,28 @@
       "bytes": 13351
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/datasets/transforms.py",
-      "bytes": 10295
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/datasets/torchvision_datasets/__init__.py",
       "bytes": 336
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/datasets/torchvision_datasets/coco.py",
       "bytes": 3369
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/datasets/transforms.py",
+      "bytes": 10295
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/engine.py",
+      "bytes": 11163
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/engine_tta.py",
+      "bytes": 8967
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/main.py",
+      "bytes": 26783
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/__init__.py",
@@ -927,6 +903,62 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/matcher.py",
       "bytes": 5066
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/functions/__init__.py",
+      "bytes": 635
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/functions/ms_deform_attn_func.py",
+      "bytes": 3816
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/make.sh",
+      "bytes": 593
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/modules/__init__.py",
+      "bytes": 593
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/modules/ms_deform_attn.py",
+      "bytes": 6961
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/setup.py",
+      "bytes": 2630
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cpu/ms_deform_attn_cpu.cpp",
+      "bytes": 1297
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cpu/ms_deform_attn_cpu.h",
+      "bytes": 1172
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cuda/ms_deform_attn_cuda.cu",
+      "bytes": 7468
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cuda/ms_deform_attn_cuda.h",
+      "bytes": 1170
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cuda/ms_deform_im2col_cuda.cuh",
+      "bytes": 56020
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/ms_deform_attn.h",
+      "bytes": 1900
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/vision.cpp",
+      "bytes": 815
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/test.py",
+      "bytes": 4176
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/pev1.py",
@@ -955,62 +987,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/utils_softnms.py",
       "bytes": 7446
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/make.sh",
-      "bytes": 593
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/setup.py",
-      "bytes": 2630
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/test.py",
-      "bytes": 4176
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/functions/__init__.py",
-      "bytes": 635
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/functions/ms_deform_attn_func.py",
-      "bytes": 3816
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/modules/__init__.py",
-      "bytes": 593
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/modules/ms_deform_attn.py",
-      "bytes": 6961
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/ms_deform_attn.h",
-      "bytes": 1900
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/vision.cpp",
-      "bytes": 815
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cpu/ms_deform_attn_cpu.cpp",
-      "bytes": 1297
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cpu/ms_deform_attn_cpu.h",
-      "bytes": 1172
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cuda/ms_deform_attn_cuda.cu",
-      "bytes": 7468
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cuda/ms_deform_attn_cuda.h",
-      "bytes": 1170
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/src/cuda/ms_deform_im2col_cuda.cuh",
-      "bytes": 56020
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/eval.sh",
@@ -1065,6 +1041,14 @@
       "bytes": 4775
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/INSTALL.md",
+      "bytes": 417
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/README.md",
+      "bytes": 3627
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/detectron2_pe/__init__.py",
       "bytes": 24
     },
@@ -1113,16 +1097,16 @@
       "bytes": 815
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/evaluate_local.sh",
-      "bytes": 190
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/coco/train_mask_rcnn_PEcore_G_coco75ep.sh",
       "bytes": 1410
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/coco/train_mask_rcnn_PEspatial_G_coco36ep.sh",
       "bytes": 1459
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/evaluate_local.sh",
+      "bytes": 190
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/lvis/train_mask_rcnn_PEcore_G_lvis75ep.sh",
@@ -1155,14 +1139,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/cli.py",
       "bytes": 29159
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/model_collection.py",
-      "bytes": 163
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/webdataset_builder.py",
-      "bytes": 11901
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/datasets/__init__.py",
@@ -1289,16 +1265,16 @@
       "bytes": 10067
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/model_collection.py",
+      "bytes": 163
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/tasks/wds_benchmarks.txt",
       "bytes": 260
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/docs/evaluation.md",
-      "bytes": 1778
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/docs/pe_demo.ipynb",
-      "bytes": 337219
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/clip_benchmark/webdataset_builder.py",
+      "bytes": 11901
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/docs/assets/cat.png",
@@ -1333,36 +1309,16 @@
       "bytes": 4092764
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/docs/evaluation.md",
+      "bytes": 1778
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/pe/docs/pe_demo.ipynb",
+      "bytes": 337219
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/README.md",
       "bytes": 8748
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/consolidate.py",
-      "bytes": 1537
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/dataset_conf.py",
-      "bytes": 1063
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/generate.py",
-      "bytes": 24036
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/interpolate_PE_pos_embed.py",
-      "bytes": 3341
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/tokenizer.py",
-      "bytes": 11361
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/train.py",
-      "bytes": 24358
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/transformer.py",
-      "bytes": 10698
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/configs/datasets.yaml",
@@ -1405,6 +1361,14 @@
       "bytes": 2156
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/consolidate.py",
+      "bytes": 1537
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/dataset_conf.py",
+      "bytes": 1063
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/docs/evaluation.md",
       "bytes": 2162
     },
@@ -1425,6 +1389,14 @@
       "bytes": 4358
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/generate.py",
+      "bytes": 24036
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/interpolate_PE_pos_embed.py",
+      "bytes": 3341
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/notebook_demos/image_and_video_captioning.ipynb",
       "bytes": 2055336
     },
@@ -1437,56 +1409,24 @@
       "bytes": 839115
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/tokenizer.py",
+      "bytes": 11361
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/train.py",
+      "bytes": 24358
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/plm/transformer.py",
+      "bytes": 10698
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/__init__.py",
       "bytes": 0
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/args.py",
       "bytes": 2363
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/checkpoint.py",
-      "bytes": 13565
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/distributed.py",
-      "bytes": 16688
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/logger.py",
-      "bytes": 4343
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/metrics.py",
-      "bytes": 8452
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/optim.py",
-      "bytes": 4775
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/probe.py",
-      "bytes": 24668
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/profiling.py",
-      "bytes": 4533
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/stool.py",
-      "bytes": 7602
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/tokenizer.py",
-      "bytes": 6790
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/transformer.py",
-      "bytes": 21596
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/utils.py",
-      "bytes": 1102
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/audio_visual_encoder/__init__.py",
@@ -1521,6 +1461,10 @@
       "bytes": 10483
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/checkpoint.py",
+      "bytes": 13565
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/data/__init__.py",
       "bytes": 0
     },
@@ -1549,6 +1493,34 @@
       "bytes": 5320
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/distributed.py",
+      "bytes": 16688
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/logger.py",
+      "bytes": 4343
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/metrics.py",
+      "bytes": 8452
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/optim.py",
+      "bytes": 4775
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/probe.py",
+      "bytes": 24668
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/profiling.py",
+      "bytes": 4533
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/stool.py",
+      "bytes": 7602
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/tests/Rock-climbing-Canada-1920x1147.jpg",
       "bytes": 213811
     },
@@ -1569,6 +1541,14 @@
       "bytes": 967265
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/tokenizer.py",
+      "bytes": 6790
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/transformer.py",
+      "bytes": 21596
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/transforms/__init__.py",
       "bytes": 0
     },
@@ -1583,6 +1563,10 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/transforms/video_transform.py",
       "bytes": 5689
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/utils.py",
+      "bytes": 1102
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/core/vision_encoder/__init__.py",
@@ -1625,12 +1609,20 @@
       "bytes": 2044
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/sam_audio/__init__.py",
-      "bytes": 142
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/requirements.txt",
+      "bytes": 359
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/sam-audio/sam_audio/processor.py",
-      "bytes": 14375
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/setup.py",
+      "bytes": 740
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/pyproject.toml",
+      "bytes": 1516
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/sam_audio/__init__.py",
+      "bytes": 142
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/sam_audio/model/__init__.py",
@@ -1681,6 +1673,10 @@
       "bytes": 3892
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/sam-audio/sam_audio/processor.py",
+      "bytes": 14375
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/sam_audio/ranking/__init__.py",
       "bytes": 1048
     },
@@ -1705,8 +1701,8 @@
       "bytes": 4611
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/src/mmae_io.py",
-      "bytes": 4452
+      "path": "Audio-Editing-Challenge-Baseline/setup.sh",
+      "bytes": 3711
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/agent/__init__.py",
@@ -1715,14 +1711,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/src/agent/audio_utils.py",
       "bytes": 1590
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/src/agent/config.py",
-      "bytes": 3830
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/src/agent/router.py",
-      "bytes": 18336
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/agent/clients/__init__.py",
@@ -1737,12 +1725,24 @@
       "bytes": 4226
     },
     {
+      "path": "Audio-Editing-Challenge-Baseline/src/agent/config.py",
+      "bytes": 3830
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/src/agent/router.py",
+      "bytes": 18336
+    },
+    {
       "path": "Audio-Editing-Challenge-Baseline/src/agent/tools/__init__.py",
       "bytes": 2864
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/agent/tools/dsp.py",
       "bytes": 2219
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/src/mmae_io.py",
+      "bytes": 4452
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/_common.sh",
@@ -1775,6 +1775,14 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/smoke_sam_audio.py",
       "bytes": 1264
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/verify_baseline_resources.py",
+      "bytes": 1608
+    },
+    {
+      "path": "README.md",
+      "bytes": 1823
     }
   ],
   "omitted": [

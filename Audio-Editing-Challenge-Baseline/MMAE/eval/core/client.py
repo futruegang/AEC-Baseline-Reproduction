@@ -7,6 +7,7 @@ import mimetypes
 import re
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 import httpx
 
@@ -45,8 +46,19 @@ class QwenOmniClient:
         base_urls: tuple[str, ...] | list[str] = DEFAULT_BASE_URLS,
         model: str = DEFAULT_MODEL,
         timeout: float = 300.0,
+        api_key: str | None = None,
+        audio_format: str = "audio_url",
+        stream: bool = False,
     ):
-        self.base_urls = list(base_urls)
+        self.base_urls = [url.strip().rstrip("/") for url in base_urls if url.strip()]
+        if not self.base_urls or any(urlsplit(url).scheme not in {"http", "https"}
+                                     or not urlsplit(url).netloc for url in self.base_urls):
+            raise ValueError("Provide at least one HTTP(S) API base URL, including its /v1 path")
+        if audio_format not in {"audio_url", "input_audio"}:
+            raise ValueError("audio_format must be audio_url or input_audio")
+        self.headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
+        self.audio_format = audio_format
+        self.stream = stream
         self.model = model
         self.timeout = timeout
         self._idx = 0
@@ -65,6 +77,8 @@ class QwenOmniClient:
         audio_paths: list[str],
         audio_labels: list[str],
     ) -> str:
+        if len(audio_paths) != len(audio_labels):
+            raise ValueError("Each audio path must have a corresponding label")
         choices_text = "\n".join(
             f"{chr(ord('A') + i)}. {c}" for i, c in enumerate(choices)
         )
@@ -73,9 +87,16 @@ class QwenOmniClient:
         content: list[dict[str, Any]] = []
         for path, label in zip(audio_paths, audio_labels):
             content.append({"type": "text", "text": f"{label}: "})
-            content.append(
-                {"type": "audio_url", "audio_url": {"url": _audio_data_uri(path)}}
-            )
+            data_uri = _audio_data_uri(path)
+            if self.audio_format == "audio_url":
+                content.append({"type": "audio_url", "audio_url": {"url": data_uri}})
+            else:
+                audio_type = Path(path).suffix.lower().lstrip(".")
+                if audio_type not in {"wav", "mp3"}:
+                    raise ValueError("input_audio mode requires WAV or MP3 files")
+                content.append({"type": "input_audio", "input_audio": {
+                    "data": data_uri.split(",", 1)[1], "format": audio_type,
+                }})
         content.append({"type": "text", "text": user_text})
 
         payload = {
@@ -87,13 +108,40 @@ class QwenOmniClient:
             "temperature": 0.7,
             "max_tokens": 4096,
         }
+        if self.audio_format == "input_audio":
+            payload["modalities"] = ["text"]
+        if self.stream:
+            payload["stream"] = True
 
         url = await self._next_url()
         async with httpx.AsyncClient(
             timeout=httpx.Timeout(connect=10.0, read=self.timeout, write=60.0, pool=10.0),
             trust_env=False,
         ) as http:
-            resp = await http.post(f"{url}/chat/completions", json=payload)
+            if self.stream:
+                chunks = []
+                async with http.stream("POST", f"{url}/chat/completions",
+                                       json=payload, headers=self.headers) as resp:
+                    resp.raise_for_status()
+                    async for line in resp.aiter_lines():
+                        if not line.startswith("data:"):
+                            continue
+                        event = line[5:].strip()
+                        if event == "[DONE]":
+                            break
+                        if not event:
+                            continue
+                        body = json.loads(event)
+                        if "error" in body:
+                            raise RuntimeError("Judge API returned an error in the response stream")
+                        choices = body.get("choices", [])
+                        if choices:
+                            text = choices[0].get("delta", {}).get("content")
+                            if text:
+                                chunks.append(text)
+                return "".join(chunks)
+            resp = await http.post(f"{url}/chat/completions", json=payload,
+                                   headers=self.headers)
             resp.raise_for_status()
             body = resp.json()
         return body["choices"][0]["message"]["content"] or ""

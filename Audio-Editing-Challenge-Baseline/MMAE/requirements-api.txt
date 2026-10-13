@@ -1,0 +1,3 @@
+# Remote judge evaluation only; no model weights, CUDA or vLLM required.
+httpx>=0.28,<1
+tqdm>=4.66,<5

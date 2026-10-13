@@ -34,7 +34,54 @@ MMAE is constructed through a systematic five-stage pipeline designed to ensure 
 
 We use [Qwen3-Omni](https://github.com/QwenLM/Qwen3-Omni) as the judge model to evaluate audio editing outputs against our rubric-based criteria.
 
-### Step 1: Deploy Qwen3-Omni
+### Step 1: Connect to the judge API (recommended for a single-GPU baseline)
+
+The official deployment script uses **Qwen/Qwen3-Omni-30B-A3B-Instruct**,
+served under the alias `Qwen3Omni-Instruct`. A remote API can host the same judge,
+so the evaluation process does not need local judge weights or GPUs.
+The provider must confirm the actual checkpoint and support **multiple audio
+inputs in one chat-completions request**. A commercial Qwen-Omni variant or a
+text-only API is not automatically equivalent to the official judge.
+
+Only `requirements-api.txt` is needed for the remote evaluation client:
+
+```bash
+pip install -r requirements-api.txt
+export MMAE_JUDGE_BASE_URL="https://api.siliconflow.cn/v1"
+export MMAE_JUDGE_API_KEY="your_api_key"
+export MMAE_JUDGE_MODEL="Qwen/Qwen3-Omni-30B-A3B-Instruct"
+
+python -m eval.score \
+  --predictions ../outputs/agent/predictions.json \
+  --audio_root . \
+  --output_dir ../outputs/agent_scores \
+  --concurrency 1 \
+  --limit 1
+```
+
+Run from this `MMAE/` directory after merging the local audio assets into it.
+This example uses SiliconFlow: its [model documentation](https://docs.siliconflow.cn/docs/userguide/guides/fim)
+lists the exact Instruct model, and its [multimodal API documentation](https://docs.siliconflow.cn/docs/userguide/capabilities/multimodal-vision)
+documents `audio_url` Base64 inputs. Use your own account/key and confirm the
+model is available to that account. A real multiple-audio request has not been
+tested in this checkout; check the one-sample results for API errors before
+running the full benchmark. Other hosts serving the same checkpoint can be
+configured with the same environment variables.
+After the one-sample check succeeds, remove `--limit 1` for full evaluation.
+Keep `--retries 3`, the prompts and generation settings unchanged for comparison.
+Audio files are sent as Base64 content; the remote service does not need access
+to your server's filesystem. The API key is read from an environment variable
+and is not written into reports. Remote API evaluation can incur provider fees.
+
+By default, requests retain the original vLLM-compatible `audio_url` data-URI
+format. If the provider documents OpenAI-style `input_audio` blocks, add
+`--audio-format input_audio` (WAV/MP3). Add `--stream` only if required by its API.
+Neither flag changes the judge model, rubric prompts or majority-vote scoring.
+
+`judge_config.json` records the requested model ID and scoring settings. Confirm
+the provider's underlying checkpoint separately; an API alias alone is not proof.
+
+### Alternative: Deploy Qwen3-Omni locally
 
 Clone the official repository and set up the environment following their instructions:
 
@@ -93,7 +140,10 @@ python -m eval.score \
 | Argument | Description |
 |----------|-------------|
 | `--predictions` | **(required)** Path to your predictions JSON file. |
-| `--base_urls` | **(required)** Comma-separated Qwen3-Omni endpoint URLs. |
+| `--base_urls` / `--base-url` | Comma-separated endpoint base URLs including `/v1`; alternatively set `MMAE_JUDGE_BASE_URL`. |
+| `--api-key-env` | API-key environment variable name. Default: `MMAE_JUDGE_API_KEY`. |
+| `--audio-format` | `audio_url` (original default) or `input_audio` (WAV/MP3). |
+| `--stream` | Read streaming chat-completions responses; disabled by default. |
 | `--metadata` | Path to MMAE metadata. Default: `MMAE-meta.json`. |
 | `--audio_root` | Base directory for resolving relative audio paths. Default: parent directory of predictions file. |
 | `--output_dir` | Where to write results. Default: `outputs/scores`. |
@@ -101,7 +151,7 @@ python -m eval.score \
 | `--retries` | Number of valid judge responses to collect per rubric. Should be 3. |
 | `--max_attempts` | Max total attempts (including failures) per rubric. Default: 10. |
 | `--timeout` | Timeout in seconds per judge request. Default: 300. |
-| `--model` | Model name served by vLLM. Default: `Qwen3Omni-Instruct`. |
+| `--model` | API model ID; default from `MMAE_JUDGE_MODEL`, otherwise `Qwen3Omni-Instruct`. |
 
 **Output files** (written to `--output_dir`):
 
@@ -110,3 +160,4 @@ python -m eval.score \
 | `results.jsonl` | Per-rubric detailed results: each rubric's 3 judge responses, per-attempt choices, scores, and raw model outputs. |
 | `per_sample.json` | Per-sample aggregated scores: Instruction Following Rate, Consistency Rate, and Exact Match Rate for each data entry. |
 | `taxonomy.json` | Scores grouped by modality, complexity, cross dimensions, and operation type. |
+| `judge_config.json` | Requested judge ID and generation/scoring settings, without API credentials. |

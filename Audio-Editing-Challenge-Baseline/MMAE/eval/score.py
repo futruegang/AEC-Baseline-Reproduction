@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import os
 from pathlib import Path
 from typing import Any
 
@@ -105,10 +106,24 @@ async def run(args: argparse.Namespace) -> None:
 
     base_urls = [u.strip() for u in args.base_urls.split(",") if u.strip()]
     client = QwenOmniClient(
-        base_urls=base_urls, model=args.model, timeout=args.timeout
+        base_urls=base_urls, model=args.model, timeout=args.timeout,
+        api_key=os.environ.get(args.api_key_env),
+        audio_format=args.audio_format, stream=args.stream,
     )
     semaphore = asyncio.Semaphore(max(1, args.concurrency))
     output_dir = Path(args.output_dir)
+    # Record the judge configuration without credentials; API model aliases alone
+    # do not prove that the provider serves the official checkpoint.
+    write_json(output_dir / "judge_config.json", {
+        "model": args.model,
+        "reference_checkpoint": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+        "audio_format": args.audio_format,
+        "stream": args.stream,
+        "temperature": 0.7,
+        "max_tokens": 4096,
+        "retries": args.retries,
+        "max_attempts": args.max_attempts,
+    })
     results_path = output_dir / "results.jsonl"
     results_path.parent.mkdir(parents=True, exist_ok=True)
     results_path.write_text("", encoding="utf-8")
@@ -171,12 +186,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max_attempts", type=int, default=10,
                         help="Max total attempts (including failures) per rubric.")
     parser.add_argument("--timeout", type=float, default=300.0)
-    parser.add_argument("--model", default=DEFAULT_MODEL)
-    parser.add_argument("--base_urls", required=True,
-                        help="Comma-separated base URLs for Qwen-Omni endpoints.")
+    parser.add_argument("--model", default=os.environ.get("MMAE_JUDGE_MODEL", DEFAULT_MODEL),
+                        help="API model ID serving Qwen3-Omni-30B-A3B-Instruct.")
+    parser.add_argument("--base_urls", "--base-url", dest="base_urls",
+                        default=os.environ.get("MMAE_JUDGE_BASE_URL"),
+                        help="API base URL including /v1, or comma-separated endpoint URLs.")
+    parser.add_argument("--api-key-env", default="MMAE_JUDGE_API_KEY",
+                        help="Environment variable containing the API key (never pass the key itself).")
+    parser.add_argument("--audio-format", choices=["audio_url", "input_audio"],
+                        default="audio_url", help="Audio input wire format required by the API.")
+    parser.add_argument("--stream", action="store_true", help="Read streaming chat completion responses.")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--index", type=int, default=None)
-    return parser.parse_args()
+    args = parser.parse_args()
+    if not args.base_urls or not any(url.strip() for url in args.base_urls.split(",")):
+        parser.error("set --base-url/--base_urls or MMAE_JUDGE_BASE_URL")
+    return args
 
 
 def main() -> None:
