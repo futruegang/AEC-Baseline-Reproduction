@@ -16,18 +16,15 @@
 
 SAM-Audio 使用 `lean` 加载，保留相同的 Large 主模型、文本编码器及默认分离参数，关闭不参与默认调用的 rankers/span predictor。不下载 Judge、CLAP、ImageBind 或自动跨度预测器；多候选重排序和自动跨度预测不在此配置范围内。此配置不声称与 full 模式完成了数值一致性实测。
 
-## 下载与验证
+## 手动上传与验证
 
-使用含 modelscope 的 Python 执行：
+源码在 `AEC/可提交GitHub/`，大权重和数据集音频在 `AEC/需手动上传服务器/`。将两组中的同名项目目录合并上传到服务器，然后执行：
 
 ```bash
-python download_sam_resources.py
 python verify_baseline_resources.py
 ```
 
-校验结果写入 `ckpts/baseline-verification.json`。下载器保留模型 LICENSE。
-
-从 GitHub 仓库恢复全部未上传权重和 MMAE 音频时，执行 `python download_baseline_resources.py`；只需权重则附加 `--skip-audio`。逐文件遗漏清单位于上一级 `未提交.md`。
+校验脚本只使用 Python 标准库及 `ckpts/baseline-verification.json` 中已记录的 SHA-256，不联网，不下载资源。未提交权重明细与数据集汇总位于上一级 `未提交.md`。模型 LICENSE 保留在相应配置目录。
 
 ## 运行路径
 
