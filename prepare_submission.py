@@ -26,12 +26,17 @@ def main():
             reason = None
             if name in {".msc", ".mv", ".DS_Store"} or name.endswith(".pyc"):
                 reason = "本地缓存/下载状态文件，不参与推理"
+            elif name == ".gitattributes" and "ckpts" in rel.parts:
+                reason = "模型下载仓库的 LFS 元数据，本项目使用下载脚本恢复权重"
             elif size >= LIMIT:
                 reason = "达到或超过普通 Git 单文件 100 MiB 限制"
             elif rel.parts[:3] == ("Audio-Editing-Challenge-Baseline", "MMAE", "wav"):
                 reason = "MMAE 音频数据，体积较大，使用下载脚本恢复"
             if reason:
                 skipped.append({"path": rel.as_posix(), "bytes": size, "reason": reason})
+                old_export = DEST / rel
+                if old_export.is_file():
+                    old_export.unlink()
                 continue
             dst = DEST / rel
             dst.parent.mkdir(parents=True, exist_ok=True)

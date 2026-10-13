@@ -10,7 +10,7 @@
     },
     {
       "path": "prepare_submission.py",
-      "bytes": 3536
+      "bytes": 3830
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/.gitignore",
@@ -46,7 +46,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/run.sh",
-      "bytes": 5918
+      "bytes": 5794
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/run_agent_mmae.py",
@@ -58,7 +58,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/setup.sh",
-      "bytes": 3801
+      "bytes": 3711
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/verify_baseline_resources.py",
@@ -217,10 +217,6 @@
       "bytes": 0
     },
     {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/.gitattributes",
-      "bytes": 1630
-    },
-    {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/LICENSE",
       "bytes": 1653
     },
@@ -243,10 +239,6 @@
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/assets/performance.png",
       "bytes": 2249748
-    },
-    {
-      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/Qwen2.5-Omni-3B/.gitattributes",
-      "bytes": 1519
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/Qwen2.5-Omni-3B/LICENSE",
@@ -342,7 +334,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/scripts/train.sh",
-      "bytes": 2126
+      "bytes": 2051
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/src/auk/__init__.py",
@@ -510,7 +502,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/launch_qwen3_omni.sh",
-      "bytes": 1962
+      "bytes": 1890
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/MMAE/eval/score.py",
@@ -978,7 +970,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/make.sh",
-      "bytes": 603
+      "bytes": 593
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/models/ops/setup.py",
@@ -1034,35 +1026,35 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/eval.sh",
-      "bytes": 916
+      "bytes": 891
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/eval_1824pix.sh",
-      "bytes": 923
+      "bytes": 898
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/eval_tta_slurm.sh",
-      "bytes": 1834
+      "bytes": 1774
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/eval_tta_slurm_1824pix.sh",
-      "bytes": 1841
+      "bytes": 1781
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/finetune_further_spatial_Gwin384_cocoep3_1824pix_8node.sh",
-      "bytes": 2034
+      "bytes": 1971
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/finetune_spatial_Gwin384_cocoep12_1728pix_8node.sh",
-      "bytes": 1990
+      "bytes": 1930
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/pretrain_continue_spatial_Gwin384_o365ep6_1536pix_16node.sh",
-      "bytes": 1960
+      "bytes": 1902
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/scripts/pretrain_spatial_Gwin384_o365ep12_1024pix_16node.sh",
-      "bytes": 1876
+      "bytes": 1818
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/DETA_pe/util/__init__.py",
@@ -1134,23 +1126,23 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/evaluate_local.sh",
-      "bytes": 196
+      "bytes": 190
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/coco/train_mask_rcnn_PEcore_G_coco75ep.sh",
-      "bytes": 1454
+      "bytes": 1410
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/coco/train_mask_rcnn_PEspatial_G_coco36ep.sh",
-      "bytes": 1504
+      "bytes": 1459
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/lvis/train_mask_rcnn_PEcore_G_lvis75ep.sh",
-      "bytes": 1454
+      "bytes": 1410
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/scripts/lvis/train_mask_rcnn_PEspatial_G_lvis75ep.sh",
-      "bytes": 1504
+      "bytes": 1459
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/sam-audio/external/perception_models/apps/detection/tools/convert_d2.py",
@@ -1766,7 +1758,7 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/_common.sh",
-      "bytes": 2119
+      "bytes": 2074
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/auk_server.py",
@@ -1774,15 +1766,15 @@
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/fetch_sensevoice.sh",
-      "bytes": 990
+      "bytes": 965
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/launch_auk.sh",
-      "bytes": 2006
+      "bytes": 1964
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/launch_sam_audio.sh",
-      "bytes": 2695
+      "bytes": 2647
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/src/services/sam_audio_server.py",
@@ -1798,6 +1790,11 @@
     }
   ],
   "omitted": [
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/.gitattributes",
+      "bytes": 1630,
+      "reason": "模型下载仓库的 LFS 元数据，本项目使用下载脚本恢复权重"
+    },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/.msc",
       "bytes": 579,
@@ -1817,6 +1814,11 @@
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/AuK/vae.safetensors",
       "bytes": 637322604,
       "reason": "达到或超过普通 Git 单文件 100 MiB 限制"
+    },
+    {
+      "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/Qwen2.5-Omni-3B/.gitattributes",
+      "bytes": 1519,
+      "reason": "模型下载仓库的 LFS 元数据，本项目使用下载脚本恢复权重"
     },
     {
       "path": "Audio-Editing-Challenge-Baseline/AuK/ckpts/Qwen2.5-Omni-3B/.msc",
