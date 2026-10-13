@@ -1,0 +1,12 @@
+[
+  {
+    "repo": "facebook/sam-audio-large",
+    "path": "ckpts\\sam-audio-large",
+    "source": "modelscope"
+  },
+  {
+    "repo": "AI-ModelScope/t5-base",
+    "path": "ckpts\\t5-base",
+    "source": "modelscope"
+  }
+]

@@ -1,0 +1,7 @@
+{
+ "framework": "pytorch",
+ "task": "text-to-image-synthesis",
+ "pipeline": {
+ "type": "diffusers-stable-diffusion"
+ }
+ }

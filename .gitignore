@@ -1,0 +1,24 @@
+# Local runtime state and downloadable large assets
+**/.git/
+**/.cache/
+**/.venv/
+**/__pycache__/
+**/.download-logs/
+**/._____temp/
+**/.modelscope-cache/
+**/*.pyc
+**/.msc
+**/.mv
+**/.DS_Store
+Audio-Editing-Challenge-Baseline/MMAE/wav/
+**/outputs/
+**/logs/
+**/.env
+**/.env.*
+# Large weights are explicitly listed in 未提交.md
+**/auk_base.safetensors
+**/vae.safetensors
+**/model-0000*-of-00003.safetensors
+**/checkpoint.pt
+**/model.pt
+**/model.safetensors
