@@ -4,7 +4,7 @@
 
 - 项目入口：[Audio-Editing-Challenge-Baseline/README.md](Audio-Editing-Challenge-Baseline/README.md)
 - 本地配置与运行说明：[LOCAL_SETUP.md](Audio-Editing-Challenge-Baseline/LOCAL_SETUP.md)
-- 未上传资源的逐文件清单：[未提交.md](未提交.md)
+- 未上传权重明细与数据集汇总：[未提交.md](未提交.md)
 - 打包文件清单与上游 Git 版本：[submission-manifest.json](submission-manifest.json)
 
 ## 恢复未上传的资源

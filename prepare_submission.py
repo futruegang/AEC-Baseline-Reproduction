@@ -48,7 +48,14 @@ def main():
     manifest = {"included": included, "omitted": skipped, "source_revisions": revisions}
     (ROOT / "submission-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     lines = ["# 未提交文件明细", "", "路径相对于本地 `AEC/` 目录。所有列出的资源仍保留在本地，没有删除。", "", f"共 {len(skipped)} 个未提交文件，合计 {sum(f['bytes'] for f in skipped):,} 字节。嵌套 Git 历史、运行环境和临时缓存目录不属于项目源码，不打包；源码以普通目录提交，不依赖 Git submodule。", "", "## 恢复方法", "", "在已具备依赖的 Python 环境中进入 `Audio-Editing-Challenge-Baseline/`，执行：", "", "```bash", "python download_baseline_resources.py", "python verify_baseline_resources.py", "```", "", "下载脚本仅下载资源，不安装环境。权重来自 ModelScope，MMAE 音频来自 Hugging Face 的公开数据仓库。只恢复权重时使用 `--skip-audio`。", "", "## 明细", "", "| 本地文件 | 大小（字节） | 未提交原因 |", "| --- | ---: | --- |"]
-    lines += [f"| `{f['path']}` | {f['bytes']:,} | {f['reason']} |" for f in skipped]
+    weights = [f for f in skipped if f["bytes"] >= LIMIT]
+    audio = [f for f in skipped if "/MMAE/wav/" in f["path"]]
+    auxiliary = [f for f in skipped if f not in weights and f not in audio]
+    lines += [f"| `{f['path']}` | {f['bytes']:,} | {f['reason']} |" for f in weights]
+    lines += ["", "## 数据集与缓存汇总", "", "| 目录/类别 | 文件数 | 总大小（字节） | 未提交原因 |", "| --- | ---: | ---: | --- |",
+              f"| `Audio-Editing-Challenge-Baseline/MMAE/wav/` | {len(audio)} | {sum(f['bytes'] for f in audio):,} | 音频数据由下载脚本恢复，元数据与评估代码已提交 |",
+              f"| 下载状态、缓存和模型仓库 LFS 元数据 | {len(auxiliary)} | {sum(f['bytes'] for f in auxiliary):,} | 不参与推理，无需恢复 |", "",
+              "逐文件核对信息保留在 [submission-manifest.json](submission-manifest.json) 的 `omitted` 数组中，本文不逐条展开数据集音频。"]
     (ROOT / "未提交.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     for name in ["未提交.md", "submission-manifest.json"]:
         shutil.copy2(ROOT / name, DEST / name)
