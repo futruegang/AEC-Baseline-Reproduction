@@ -1,6 +1,6 @@
 # AEC baseline 复现准备
 
-此仓库保存 ICASSP 2027 Audio Editing Challenge baseline 的源码、必要依赖源码、模型配置、MMAE 元数据/评估工具和运行/校验脚本。运行环境安装不在本次准备范围内。
+此仓库保存 ICASSP 2027 Audio Editing Challenge baseline 的源码、必要依赖源码、模型配置、MMAE 元数据/评估工具和运行/校验脚本。服务器的 uv 环境安装与检查入口见下方本地配置说明。
 
 - 项目入口：[Audio-Editing-Challenge-Baseline/README.md](Audio-Editing-Challenge-Baseline/README.md)
 - 本地配置与运行说明：[LOCAL_SETUP.md](Audio-Editing-Challenge-Baseline/LOCAL_SETUP.md)
