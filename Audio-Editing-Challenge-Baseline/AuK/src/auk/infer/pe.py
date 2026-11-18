@@ -15,7 +15,7 @@ import tempfile
 import threading
 import time
 import wave
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -443,7 +443,7 @@ class FallbackASRProvider:
         attempts: list[str] = []
         for provider in self.providers:
             result = provider.transcribe(audio_path)
-            if result.text:
+            if result.text and result.text.strip() and not result.error:
                 return result
             attempts.append(f"{result.model}: {result.error or 'ASR 返回空文本'}")
         return ASRCall(
@@ -794,6 +794,10 @@ class PromptEnhancer:
             message = "Zero-shot TTS 需要参考音频" if classified.task_type == "zero_shot_tts" else "该任务需要输入音频"
             raise UnsupportedRequestError(message)
 
+        # Fill orig/new before the original replace validation; ordinary edits do not translate.
+        if classified.params_extracted.get("edit_intent") == "translation":
+            classified, translation_call = self._prepare_translation(classified, asr)
+            llm_calls.append(translation_call)
         params = self._normalize_params(classified, user_instruction=user_instruction)
         instruction_language = classified.language
         if classified.task_type == "nonverbal_edit":
@@ -825,13 +829,22 @@ class PromptEnhancer:
                 else asr.text
             )
 
-        original_duration = _audio_duration(audio_path) if audio_path else None
-        vad_bounds, base_duration = self._resolve_audio_duration(
-            classified.task_type,
-            classified.operation_subtype,
-            audio_path,
-            original_duration,
+        is_full_translation = (
+            classified.task_type == "content_edit"
+            and params.get("edit_intent") == "translation"
+            and params.get("translation_scope") == "full"
         )
+        original_duration = _audio_duration(audio_path) if audio_path else None
+        if is_full_translation:
+            # Match the tested cross-lingual TTS path: preserve the complete voice reference.
+            vad_bounds, base_duration = None, original_duration
+        else:
+            vad_bounds, base_duration = self._resolve_audio_duration(
+                classified.task_type,
+                classified.operation_subtype,
+                audio_path,
+                original_duration,
+            )
 
         if target_duration is not None and float(target_duration) > 0:
             duration = float(target_duration)
@@ -861,22 +874,30 @@ class PromptEnhancer:
             instruction_language,
             classified.text_language,
         )
-        processed_audio, cleanup_paths = _prepare_audio(
-            audio_path,
-            task_type=classified.task_type,
-            operation_subtype=classified.operation_subtype,
-            vad_bounds=vad_bounds,
-        )
+        if is_full_translation:
+            processed_audio, cleanup_paths = audio_path, []
+        else:
+            processed_audio, cleanup_paths = _prepare_audio(
+                audio_path,
+                task_type=classified.task_type,
+                operation_subtype=classified.operation_subtype,
+                vad_bounds=vad_bounds,
+            )
         if classified.task_type == "instruct_tts":
             processed_audio = None
 
         is_zero_shot = classified.task_type == "zero_shot_tts"
+        gen_text = None
+        if is_full_translation:
+            gen_text = params["new"]
+        elif classified.task_type in ("instruct_tts", "zero_shot_tts"):
+            gen_text = str(params.get("text") or "")
         return PromptEnhancerOutput(
             audio=processed_audio,
             instruction=model_instruction,
             gen_seconds=duration,
-            ref_text=normalized_asr_text if is_zero_shot else None,
-            gen_text=str(params.get("text") or "") if classified.task_type in ("instruct_tts", "zero_shot_tts") else None,
+            ref_text=normalized_asr_text if is_zero_shot or is_full_translation else None,
+            gen_text=gen_text,
             task_type=classified.task_type,
             operation_subtype=classified.operation_subtype,
             params_extracted=classified.params_extracted,
@@ -965,6 +986,7 @@ class PromptEnhancer:
         if (
             supported
             and task_type == "content_edit"
+            and params.get("edit_intent") != "translation"
             and subtype == "replace"
             and any(marker in instruction.casefold() for marker in _VOCAL_EDIT_MARKERS)
         ):
@@ -1030,6 +1052,94 @@ class PromptEnhancer:
         if output_language == "en" and (_CJK_RE.search(expanded) or not _EN_WORD_RE.search(expanded)):
             raise PromptEnhancerError(f"LLM 的 {slot} 未按要求输出英文")
         return {**params, slot: expanded}, call
+
+    def _prepare_translation(
+        self, classified: _Classified, asr: ASRCall | None,
+    ) -> tuple[_Classified, LLMCall]:
+        """Translate a grounded transcript excerpt into the existing replace slots."""
+        if classified.task_type != "content_edit" or classified.operation_subtype != "replace":
+            raise UnsupportedRequestError("翻译仅允许 content_edit/replace")
+        params = dict(classified.params_extracted)
+        target = params.get("target_language")
+        if target not in ("zh", "en"):
+            raise UnsupportedRequestError("翻译必须明确目标语言，仅支持 zh/en")
+        if asr is None or asr.error or not str(asr.text or "").strip():
+            raise PromptEnhancerError("翻译需要有效且非空的 ASR 原文")
+        supported_sources = {"zh", "en", "yue", "ja", "ko"}
+        source_language = asr.language
+        hint = params.get("source_language_hint")
+        if hint and (not isinstance(hint, str) or hint not in supported_sources):
+            raise UnsupportedRequestError(f"当前 ASR 未验证支持源语言 {hint!r}；不能猜测译文")
+        if source_language not in supported_sources:
+            raise UnsupportedRequestError(f"ASR 源语言未知或不支持: {source_language!r}")
+        if hint and hint != source_language:
+            raise PromptEnhancerError("ASR 语种与用户指定源语言不一致，需要核实原音频")
+        # Tencent's configured zh/en endpoint does not perform trustworthy general language ID.
+        if asr.model.startswith("16k_") and not hint:
+            raise PromptEnhancerError("当前 ASR 不提供可靠的源语种标识，请使用带语种标签的 provider")
+        if isinstance(asr.raw_response, dict):
+            tokens = re.findall(r"<\|([a-z]+)\|>", str(asr.raw_response.get("text", "")))
+            langs = set(tokens) & supported_sources
+            if len(langs) > 1:
+                raise UnsupportedRequestError("多语种 ASR 结果需要分段识别和编辑，本阶段不支持整段猜测")
+        transcript = asr.text.strip()
+        if not any(char.isalpha() or char.isdigit() for char in transcript):
+            raise PromptEnhancerError("ASR 只有标点或噪声标签，缺少可翻译的文本")
+        scope = params.get("translation_scope")
+        if scope == "full":
+            if any(params.get(k) is not None for k in ("source_text", "sentence_index", "selector_type")):
+                raise PromptEnhancerError("整段翻译同时包含局部选择条件，拒绝扩大范围")
+            original = transcript
+            span = (0, len(transcript))
+        elif scope == "partial":
+            selector = params.get("selector_type")
+            if selector == "source_text":
+                if params.get("sentence_index") is not None:
+                    raise PromptEnhancerError("局部原文与句子序号选择条件冲突")
+                original = params.get("source_text")
+                if not isinstance(original, str) or not original.strip() or transcript.count(original) != 1:
+                    raise PromptEnhancerError("局部原文必须在 ASR 中精确且唯一出现")
+                start = transcript.index(original)
+                span = (start, start + len(original))
+            elif selector == "sentence_index":
+                if params.get("source_text") is not None:
+                    raise PromptEnhancerError("句子序号与局部原文选择条件冲突")
+                index = params.get("sentence_index")
+                if isinstance(index, bool) or not isinstance(index, int) or index < 1:
+                    raise PromptEnhancerError("sentence_index 必须是从 1 开始的整数")
+                # ASR punctuation is a heuristic, not word timestamps or forced alignment.
+                spans = list(re.finditer(r"[^。！？.!?]+[。！？.!?]+|[^。！？.!?]+$", transcript))
+                if index > len(spans) or (len(spans) == 1 and not re.search(r"[。！？.!?]", transcript)):
+                    raise PromptEnhancerError("ASR 分句不足，无法确定目标句子")
+                match = spans[index - 1]
+                original = match.group().strip()
+                start = match.start() + len(match.group()) - len(match.group().lstrip())
+                span = (start, start + len(original))
+                if transcript.count(original) != 1:
+                    raise PromptEnhancerError("目标句子重复，无法保证只替换指定出现位置")
+            else:
+                raise UnsupportedRequestError("局部翻译需要唯一原文或 ASR 句号序号；时间/说话人/语种定位尚未实现")
+        else:
+            raise PromptEnhancerError("翻译必须明确 translation_scope=full/partial")
+        call = self._call_llm("translate_content", [
+            {"role": "system", "content": str(_PROMPTS["translate_content"])},
+            {"role": "user", "content": json.dumps({
+                "source_text": original, "source_language": source_language,
+                "target_language": target, "context": transcript,
+            }, ensure_ascii=False)},
+        ])
+        translated = _extract_json(call.content).get("translation")
+        if not isinstance(translated, str) or not translated.strip():
+            raise PromptEnhancerError("翻译响应缺少非空 translation 字符串")
+        translated = translated.strip()
+        if target == "zh" and not _CJK_RE.search(translated):
+            raise PromptEnhancerError("译文不包含目标中文文本")
+        if target == "en" and (not _EN_WORD_RE.search(translated) or _CJK_RE.search(translated)):
+            raise PromptEnhancerError("译文不符合目标英文文本")
+        params.update(orig=original, new=translated, source_language=source_language,
+                      instruction_language=classified.language, source_span=list(span),
+                      generation_mode="reference_tts" if scope == "full" else "content_replace")
+        return replace(classified, params_extracted=params), call
 
     def _match_nonverbal_event(
         self,
@@ -1114,6 +1224,10 @@ class PromptEnhancer:
         if subtypes and subtype not in subtypes:
             raise PromptEnhancerError(f"{task_type} 缺少或包含非法 operation_subtype: {subtype!r}")
 
+        if task_type == "content_edit":
+            intent = params.setdefault("edit_intent", "normal")
+            if intent not in ("normal", "translation"):
+                raise PromptEnhancerError(f"非法 edit_intent: {intent!r}")
         if task_type == "zero_shot_tts":
             params = {"text": params.get("text")}
         if task_type == "speed_edit":
@@ -1260,6 +1374,10 @@ class PromptEnhancer:
         if category == "speed_scaled":
             duration = base_duration / float(params["speed_multiplier"])
             return duration, "input_duration_div_speed", {"base_duration_sec": base_duration}
+        if category == "content_scaled" and params.get("edit_intent") == "translation":
+            duration, details = _translation_duration(params, base_duration, asr_text)
+            source = "translation_reference_tts" if params["translation_scope"] == "full" else "translation_content_ratio"
+            return duration, source, details
         if category == "content_scaled":
             duration = _content_scaled_duration(
                 task_type,
@@ -1568,15 +1686,12 @@ def _resolve_text_language(text: Any, *, declared_language: Any = None, fallback
     return _normalize_language(declared_language) or _normalize_language(fallback_language) or "zh"
 
 
-def _sensevoice_language(raw_text: str, clean_text: str) -> str:
+def _sensevoice_language(raw_text: str, clean_text: str) -> str | None:
+    # Preserve ASR labels; zh/en template selection belongs to _normalize_language.
     tag = re.search(r"<\|(zh|en|yue|ja|ko|nospeech)\|>", raw_text, re.IGNORECASE)
     if tag:
-        language = tag.group(1).lower()
-        if language == "en":
-            return "en"
-        if language in {"zh", "yue"}:
-            return "zh"
-    return _resolve_text_language(clean_text)
+        return tag.group(1).lower()
+    return None  # Script/Latin letters are not reliable language identification.
 
 
 def _as_float(value: Any, name: str) -> float:
@@ -1602,6 +1717,10 @@ def _render_instruction(
     text_language: str | None,
 ) -> str:
     spec = _TASKS[task_type]
+    if (task_type == "content_edit" and subtype == "replace"
+            and params.get("edit_intent") == "translation"
+            and params.get("translation_scope") == "full"):
+        return str(spec["full_translation_template"]).format(text=params["new"])
     lang = text_language if task_type in ("instruct_tts", "zero_shot_tts") else language
     lang = "en" if lang == "en" else "zh"
     if task_type == "zero_shot_tts":
@@ -1777,6 +1896,45 @@ def _spoken_duration(text: str | None, fallback_language: str | None) -> float:
     language = _resolve_text_language(value, fallback_language=fallback_language)
     units = len(value.split()) if language == "en" else len(re.findall(r"\S", value))
     return units * (0.30 if language == "en" else 0.21)
+
+
+def _translation_duration(
+    params: dict[str, Any], base_duration: float, transcript: str | None,
+) -> tuple[float, dict[str, Any]]:
+    def units(text: str, language: str | None) -> float:
+        if language == "ko":
+            return len(re.findall(r"[가-힣]", text)) * 0.18
+        if language == "ja":
+            return len(re.findall(r"[ぁ-ゟ゠-ヿ一-鿿]", text)) * 0.15
+        return _spoken_duration(text, language)
+
+    if params["translation_scope"] == "full":
+        estimate = max(
+            _estimate_f5_instruct_duration(params["new"], params["target_language"]),
+            units(params["new"], params["target_language"]),
+        )
+        details = {"base_duration_sec": base_duration, "source_language": params.get("source_language"),
+                   "target_language": params["target_language"], "scope": "full",
+                   "generation_mode": "reference_tts", "duration_is_heuristic": True}
+        if not math.isfinite(estimate) or estimate <= 0:
+            details["fallback"] = "input_duration_unreliable_text_estimate"
+            return base_duration, details
+        return max(0.5, estimate), details
+
+    source = units(transcript or "", params.get("source_language"))
+    removed = units(params["orig"], params.get("source_language"))
+    added = units(params["new"], params["target_language"])
+    details = {"base_duration_sec": base_duration, "source_language": params.get("source_language"),
+               "target_language": params["target_language"], "scope": params["translation_scope"],
+               "duration_is_heuristic": True}
+    if source <= 0 or removed <= 0 or added <= 0:
+        details["fallback"] = "input_duration_unreliable_text_estimate"
+        return base_duration, details
+    ratio = max(0.0, source - removed) / source + added / source
+    # Guard against ASR errors or unusually short/verbose translations, not a guarantee of alignment.
+    bounded = min(3.0, max(0.5, ratio))
+    details.update(raw_ratio=ratio, applied_ratio=bounded)
+    return base_duration * bounded, details
 
 
 def _content_scaled_duration(
